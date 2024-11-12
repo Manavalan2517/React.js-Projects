@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Form = () => {
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [userColor, setUserColor] = useState("red");
   const [emailColor, setEmailColor] = useState("red");
@@ -36,14 +37,15 @@ export const Form = () => {
       setPasswordColor("red");
     }
   }
-  
-  function validateConfirmPassword(value) {
-    if (value === password) {
+  useEffect(() => {
+    if (confirmPassword.length <= 8) {
+      setConfirmPasswordColor("red");
+    }  else if (confirmPassword === password) {
       setConfirmPasswordColor("green");
     } else {
       setConfirmPasswordColor("red");
     }
-  }
+  }, [password, confirmPassword]);
 
   return (
     <div className="w-[400px] items-center border-2 border-green-500 p-4 flex justify-center h-[500px] rounded-2xl">
@@ -98,7 +100,7 @@ export const Form = () => {
             name="confirmPassword"
             placeholder="Confirm Password"
             onChange={(e) => {
-              validateConfirmPassword(e.target.value);
+              setConfirmPassword(e.target.value);
             }}
           />
         </label>
