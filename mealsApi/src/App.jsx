@@ -15,8 +15,8 @@ function App() {
   console.log(items);
 
   return (
-    <div>
-      <h1>Seafoods</h1>
+    <div className="mt-5">
+      <h1 className="flex justify-center font-extrabold text-4xl">Seafoods</h1>
       <div className="m-10 flex gap-9 flex-wrap justify-around items-center">
         {items.map((item) => (
           <div key={item.idMeal} className="p-5 h-[300px] border-2 border-black rounded-xl bg-gray-200">
